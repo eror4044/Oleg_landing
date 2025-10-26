@@ -1,0 +1,133 @@
+{
+    "hero": {
+        "title": "Train Smarter with",
+        "subtitle": "The all-in-one coaching platform that connects trainers and clients, transforms workouts into data-driven progress, and adds AI-powered intelligence to every rep.",
+        "buttons": {
+            "demo": "Try Demo App",
+            "features": "Explore Features"
+        },
+        "trusted": "⭐ Trusted by 100+ coaches worldwide"
+    },
+    "cta": {
+        "demo": "Try Demo",
+        "features": "Explore Features"
+    },
+    "header": {
+        "links": {
+            "forWho": "Who it’s for",
+            "features": "Features",
+            "roadmap": "Roadmap"
+        },
+        "cta": {
+            "demo": "Try Demo"
+        }
+    },
+    "forWho": {
+        "clients": {
+            "title": "For Clients",
+            "description": "Your workouts, progress, and feedback — all in one app. FitAssist keeps you focused, informed, and motivated with AI-driven insights.",
+            "features": [
+                "Personalized programs & check-ins",
+                "Visual progress tracking",
+                "In-app chat with coach",
+                "AI-driven workout suggestions"
+            ]
+        },
+        "coaches": {
+            "title": "For Coaches",
+            "description": "Simplify your workflow — manage clients, track sessions, and analyze performance. FitAssist helps you coach smarter, not harder.",
+            "features": [
+                "Smart scheduling & client management",
+                "Performance analytics",
+                "Automated progress reports",
+                "Real-time communication"
+            ]
+        },
+        "cta": {
+            "title": "Choose your path with FitAssist AI",
+            "client": "I’m a Client",
+            "coach": "I’m a Coach"
+        }
+    },
+    "features": {
+        "title": "Powerful Features for Smarter Coaching",
+        "subtitle": "Everything you need to coach effectively, manage your clients, and deliver measurable results — powered by elegant design and smart automation.",
+        "ai": {
+            "title": "AI Insights",
+            "desc": "Automatically analyze client progress and get actionable recommendations to optimize results."
+        },
+        "calendar": {
+            "title": "Smart Calendar",
+            "desc": "Plan, reschedule, and track training sessions effortlessly — all synced across devices."
+        },
+        "chat": {
+            "title": "Real-time Chat",
+            "desc": "Stay connected with your coach or client in a single, integrated communication hub."
+        },
+        "progress": {
+            "title": "Progress Tracking",
+            "desc": "Visualize workout history, performance charts, and achievements with beautiful analytics."
+        },
+        "automation": {
+            "title": "Automation Tools",
+            "desc": "Save time with auto-check-ins, notifications, and reminders powered by FitAssist AI."
+        },
+        "cross": {
+            "title": "Cross-platform Access",
+            "desc": "Available on web, iOS, and Android. Your fitness data — always within reach."
+        }
+    },
+    "roadmap": {
+        "title": "FitAssist AI Roadmap",
+        "subtitle": {
+            "part1": "We’re building the next-generation coaching ecosystem —",
+            "part2": " smarter tools, deeper insights, ",
+            "part3": "and",
+            "part4": " AI-powered automation ",
+            "part5": "for trainers and clients alike."
+        },
+        "now": {
+            "stage": "Now",
+            "title": "MVP Launch",
+            "desc": "Clients, programs, and sessions — everything you need to start coaching smarter."
+        },
+        "next": {
+            "stage": "Next",
+            "title": "Cloud Sync & Analytics",
+            "desc": "Seamless data sync, progress insights, and real-time performance metrics."
+        },
+        "future": {
+            "stage": "Future",
+            "title": "AI Coaching & Wearable Integration",
+            "desc": "Predictive training insights and data from your fitness devices in one ecosystem."
+        }
+    },
+    "finalCTA": {
+        "title": "Start Coaching Smarter with FitAssist AI",
+        "subtitle": "Join early and explore the next generation of AI-driven fitness tools. Whether you're a coach or client, FitAssist helps you reach the next level.",
+        "client": "I’m a Client",
+        "coach": "I’m a Coach"
+    },
+    "footer": {
+        "description": "AI-powered platform for smart coaching and fitness management. Designed to connect coaches and clients seamlessly.",
+        "links": {
+            "features": "Features",
+            "roadmap": "Roadmap",
+            "forWho": "For Coaches & Clients",
+            "getStarted": "Get Started"
+        },
+        "rights": "All rights reserved."
+    },
+    "demo": {
+        "title": "Demo Coming Soon",
+        "subtitle": {
+            "part1": "We’re working hard to make the FitAssist AI demo experience ready for you.",
+            "part2": "Soon",
+            "part3": "you’ll be able to explore both the",
+            "part4": "Client and Coach",
+            "part5": "views — fully interactive and powered by AI."
+        },
+        "back": "Back to Home",
+        "rights": "All rights reserved."
+    }
+}

@@ -26,16 +26,25 @@ const results = [
 
 export default function ResultsSection() {
   return (
-    <section id="results" className="bg-rose/20 py-24">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+    <section
+      id="results"
+      className="relative overflow-hidden text-light py-24 sm:py-28"
+    >
+      {/* Плавний градієнт від темного до теплого світла */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,14,14,0.95)_10%,rgba(251,174,88,0.12)_100%)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-[radial-gradient(circle_at_bottom,rgba(231,104,31,0.15),transparent_70%)] opacity-70" />
+
+      <div className="relative max-w-6xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-graphite mb-12"
+          className="text-3xl md:text-4xl font-bold mb-12"
         >
-          Результати клієнток <span className="text-coral">до</span> / <span className="text-mint">після</span>
+          <span className="text-[rgba(251,174,88,1)]">Результати клієнток</span>{' '}
+          <span className="text-[#FFD9B5]/90">до</span> /{' '}
+          <span className="text-[rgba(231,104,31,1)]">після</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -46,7 +55,7 @@ export default function ResultsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl shadow-lg overflow-hidden border border-rose/30 hover:shadow-xl transition"
+              className="rounded-3xl overflow-hidden border border-[rgba(251,174,88,0.2)] bg-[rgba(20,20,20,0.85)] backdrop-blur-sm shadow-[0_0_40px_rgba(251,174,88,0.1)] hover:shadow-[0_0_50px_rgba(251,174,88,0.18)] transition-all"
             >
               <div className="grid grid-cols-2">
                 <div className="relative aspect-[3/4]">
@@ -56,7 +65,7 @@ export default function ResultsSection() {
                     fill
                     className="object-cover grayscale"
                   />
-                  <div className="absolute bottom-2 left-2 text-xs bg-white/80 px-2 py-0.5 rounded-full">
+                  <div className="absolute bottom-2 left-2 text-xs bg-[rgba(251,174,88,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
                     До
                   </div>
                 </div>
@@ -67,27 +76,28 @@ export default function ResultsSection() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 text-xs bg-white/80 px-2 py-0.5 rounded-full">
+                  <div className="absolute bottom-2 left-2 text-xs bg-[rgba(231,104,31,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
                     Після
                   </div>
                 </div>
               </div>
               <div className="p-5">
-                <p className="font-semibold text-graphite">{r.name}</p>
-                <p className="text-sm text-graphite/70 mt-2">{r.text}</p>
+                <p className="font-semibold text-[rgba(251,174,88,1)]">
+                  {r.name}
+                </p>
+                <p className="text-sm text-[#FFD9B5]/80 mt-2">{r.text}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Placeholder для видео отзывов */}
         <div className="mt-16">
-          <p className="text-lg text-graphite/80 mb-4">
+          <p className="text-lg text-[#FFD9B5]/90 mb-4">
             🎥 Дивись живі відео-відгуки учасниць
           </p>
           <div className="flex justify-center flex-wrap gap-4">
             <iframe
-              className="rounded-3xl shadow-lg"
+              className="rounded-3xl shadow-[0_0_30px_rgba(251,174,88,0.25)] ring-1 ring-[rgba(251,174,88,0.15)]"
               width="300"
               height="170"
               src="https://www.youtube.com/embed/DUMMY_ID"
@@ -95,7 +105,7 @@ export default function ResultsSection() {
               allowFullScreen
             ></iframe>
             <iframe
-              className="rounded-3xl shadow-lg"
+              className="rounded-3xl shadow-[0_0_30px_rgba(251,174,88,0.25)] ring-1 ring-[rgba(231,104,31,0.15)]"
               width="300"
               height="170"
               src="https://www.youtube.com/embed/DUMMY_ID2"
@@ -105,6 +115,7 @@ export default function ResultsSection() {
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0E0E0E] to-transparent pointer-events-none" />
     </section>
   );
 }

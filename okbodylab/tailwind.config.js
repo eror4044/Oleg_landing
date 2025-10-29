@@ -8,19 +8,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        coral: '#FF8A80',
-        peach: '#FFD4B2',
-        mint: '#B7E4C7',
-        rose: '#FFE8E0',
-        graphite: '#3C3C3C',
-        ivory: '#FFF9F5',
-      },
-      borderRadius: {
-        '2xl': '1rem',
-        '3xl': '1.5rem',
+        dark: '#0E0E0E',          // фоновый почти чёрный, мягкий
+        light: '#FFF9F5',         // тёплый белый
+        graphite: '#1C1C1C',      // глубокий фон блоков
+        primary: '#FBAE58',       // янтарно-золотой (основной CTA)
+        accent: '#E7681F',        // апельсиново-оранжевый (внимание)
+        secondary: '#FFB89F',     // нежный персиково-розовый
+        glow: '#FFD8B0',          // световой эффект
+        muted: '#FFE8D9',         // текст на тёмном фоне
       },
       boxShadow: {
-        cta: '0 8px 20px rgba(255,138,128,.3)',
+        cta: '0 8px 25px rgba(251,174,88,0.4)',
+        glow: '0 0 30px rgba(231,104,31,0.35)',
+        soft: '0 4px 12px rgba(251,174,88,0.25)',
+      },
+      backgroundImage: {
+        'cta-gradient': 'linear-gradient(135deg, #E7681F, #FBAE58)',
+        'accent-glow': 'radial-gradient(circle at 50% 50%, rgba(251,174,88,0.25), transparent 70%)',
       },
     },
   },

@@ -42,7 +42,7 @@ export default function SpeakerSection() {
               Олег Козлов
             </p>
             <p className="text-sm opacity-80">
-              Майстер спорту України міжнародного класу
+              Майстер спорту міжнародного класу
             </p>
           </div>
         </motion.div>
@@ -59,7 +59,7 @@ export default function SpeakerSection() {
 
           <p className="text-lg text-[#FFD9B5]/90 leading-relaxed mb-6">
             Я, <strong className="text-[rgba(251,174,88,1)]">Олег Козлов</strong>,
-            фітнес-тренер і нутриціолог, Майстер спорту України міжнародного класу
+            фітнес-тренер і нутриціолог, Майстер спорту міжнародного класу
             з силового екстріму. Понад 10 років допомагаю людям досягати легкої,
             здорової форми — без виснажень, дієт та зривів.
           </p>
@@ -72,7 +72,7 @@ export default function SpeakerSection() {
               },
               {
                 icon: <Award className="text-[rgba(231,104,31,1)] w-6 h-6 mb-2" />,
-                text: 'Майстер спорту України',
+                text: 'Майстер спорту міжнародного класу',
               },
               {
                 icon: <Dumbbell className="text-[rgba(251,174,88,1)] w-6 h-6 mb-2" />,

@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion';
 
 const results = [
-  { icon: '💖', text: 'Схуднення без шкоди для здоров’я' },
-  { icon: '📏', text: 'Зменшення в об’ємах і підтягнуте тіло' },
-  { icon: '🌸', text: 'Менше целюліту й кращий тонус шкіри' },
-  { icon: '⚡', text: 'Більше енергії, сили та мотивації' },
-  { icon: '🍎', text: 'Нові харчові звички без зривів' },
-  { icon: '🧘‍♀️', text: 'Краще травлення та комфорт у тілі' },
-  { icon: '💫', text: 'Підвищення самооцінки й упевненість' },
+  { icon: '💖', text: "Схуднення без шкоди для здоров'я" },
+  { icon: '📏', text: 'Зменшення у об’ємах' },
+  { icon: '💃', text: 'Підтягнуте та стрункіше тіло' },
+  { icon: '🌸', text: 'Зменшення целюліту' },
+  { icon: '🧠', text: 'Нові звички та нове мислення' },
+  { icon: '🍎', text: 'Позбудешся зривів' },
+  { icon: '⚡', text: 'Енергію, сили та мотивацію' },
+  { icon: '🧘‍♀️', text: 'Покращення роботи ШКТ' },
+  { icon: '🥗', text: 'Знання, як формувати свою тарілку' },
 ];
 
 export default function AfterCourseSection() {
@@ -61,22 +63,6 @@ export default function AfterCourseSection() {
           ))}
         </div>
 
-        {/* === Статистика === */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="inline-block rounded-3xl px-12 py-8 bg-[rgba(28,28,28,0.8)] border border-[rgba(251,174,88,0.2)] shadow-[0_0_35px_rgba(251,174,88,0.15)] backdrop-blur-md mb-14"
-        >
-          <p className="text-4xl font-bold text-[rgba(251,174,88,1)] drop-shadow-[0_0_10px_rgba(251,174,88,0.5)]">
-            95%
-          </p>
-          <p className="text-[#FFD9B5]/80 text-sm">
-            учасниць утримують результат навіть після завершення курсу
-          </p>
-        </motion.div>
-
         {/* === Описова частина === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,13 +72,24 @@ export default function AfterCourseSection() {
           className="max-w-2xl mx-auto text-[#FFD9B5]/85 text-lg leading-relaxed"
         >
           <p>
-            Ти станеш спокійнішою, стійкішою до стресів, дисциплінованішою,
-            впевненою у собі. Нарешті зможеш обирати одяг, який тобі подобається —
-            а не той, що приховує недоліки.
+            Ти станеш стійкішою до стресів, дисциплінованішою, покращаться твої фізичні якості, шкіра тіла та обличчя. Твоя самооцінка підвищиться і нарешті ти зможеш обирати собі одяг, який тобі подобається, а не той, який скриватиме недоліки твоєї фігури.
             <br />
-            <span className="font-semibold text-[rgba(251,174,88,1)]">
-              Твоє нове тіло — це не мрія, а результат рішучості 💫
-            </span>
+          </p>
+        </motion.div>
+
+        {/* === Статистика === */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="inline-block rounded-3xl px-12 py-8 bg-[rgba(28,28,28,0.8)] border border-[rgba(251,174,88,0.2)] shadow-[0_0_35px_rgba(251,174,88,0.15)] backdrop-blur-md mt-14"
+        >
+          <p className="text-4xl font-bold text-[rgba(251,174,88,1)] drop-shadow-[0_0_10px_rgba(251,174,88,0.5)]">
+            95%
+          </p>
+          <p className="text-[#FFD9B5]/80 text-sm">
+            учасниць утримують результат навіть після завершення курсу
           </p>
         </motion.div>
       </div>

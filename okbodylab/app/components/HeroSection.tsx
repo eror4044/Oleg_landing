@@ -61,7 +61,7 @@ export default function HeroSection() {
                     </h1>
 
                     <p className="text-base sm:text-lg md:text-xl text-muted max-w-md mx-auto md:mx-0 mb-8 leading-relaxed">
-                        Отримай <strong className="text-primary">дієву систему схуднення</strong> без жорстких дієт. 5 днів: харчування, тренування, подкасти з лікарями.
+                        Отримай <strong className="text-primary">дієву систему схуднення</strong> без жорстких дієт. 5 днів: харчування, тренування та інформативих подкастів для кращого розуміння власного тіла.
                     </p>
 
                     {/* CTA */}
@@ -102,7 +102,7 @@ export default function HeroSection() {
                         <li className="flex items-center gap-2"><CheckCircle2 className="text-primary w-5 h-5" /> Розбір типових помилок у харчуванні</li>
                         <li className="flex items-center gap-2"><Heart className="text-accent w-5 h-5" /> 1000+ історій успіху</li>
                         <li className="flex items-center gap-2"><Flame className="text-primary w-5 h-5" /> 3247 кг жиру спалено</li>
-                        <li className="flex items-center gap-2"><Utensils className="text-secondary w-5 h-5" /> Бонус: 5 простих рецептів</li>
+                        <li className="flex items-center gap-2"><Utensils className="text-secondary w-5 h-5" /> 5 смачних та простих у приготуванні сніданків, обідів та вечерь.</li>
                     </ul>
 
                     {/* Trust */}
@@ -143,7 +143,7 @@ export default function HeroSection() {
                         />
                         <div className="absolute inset-x-0 bottom-0 bg-black/70 p-3 sm:p-5 text-center sm:text-left">
                             <p className="text-base font-semibold">
-                                <span className="text-primary">Олег Козлов</span> — тренер і нутриціолог
+                                <span className="text-primary">Олег Козлов</span> — фітнес тренер та нутриціолог, який знає як влашнований твій організм!
                             </p>
                             <p className="text-xs opacity-80">Майстер спорту України з силового екстріму</p>
                         </div>

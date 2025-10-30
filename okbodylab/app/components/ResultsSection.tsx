@@ -30,11 +30,12 @@ export default function ResultsSection() {
       id="results"
       className="relative overflow-hidden text-light py-24 sm:py-28"
     >
-      {/* Плавний градієнт від темного до теплого світла */}
+      {/* === Фон === */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,14,14,0.95)_10%,rgba(251,174,88,0.12)_100%)] pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-[40%] bg-[radial-gradient(circle_at_bottom,rgba(231,104,31,0.15),transparent_70%)] opacity-70" />
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
+        {/* === Заголовок === */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,6 +48,7 @@ export default function ResultsSection() {
           <span className="text-[rgba(231,104,31,1)]">після</span>
         </motion.h2>
 
+        {/* === Галерея фото до/після === */}
         <div className="grid md:grid-cols-3 gap-8">
           {results.map((r, i) => (
             <motion.div
@@ -64,6 +66,7 @@ export default function ResultsSection() {
                     alt={`${r.name} — до`}
                     fill
                     className="object-cover grayscale"
+                    loading="lazy"
                   />
                   <div className="absolute bottom-2 left-2 text-xs bg-[rgba(251,174,88,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
                     До
@@ -75,6 +78,7 @@ export default function ResultsSection() {
                     alt={`${r.name} — після`}
                     fill
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute bottom-2 left-2 text-xs bg-[rgba(231,104,31,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
                     Після
@@ -91,30 +95,48 @@ export default function ResultsSection() {
           ))}
         </div>
 
+        {/* === Відео-відгуки === */}
         <div className="mt-16">
-          <p className="text-lg text-[#FFD9B5]/90 mb-4">
+          <p className="text-lg text-[#FFD9B5]/90 mb-6">
             🎥 Дивись живі відео-відгуки учасниць
           </p>
-          <div className="flex justify-center flex-wrap gap-4">
-            <iframe
-              className="rounded-3xl shadow-[0_0_30px_rgba(251,174,88,0.25)] ring-1 ring-[rgba(251,174,88,0.15)]"
-              width="300"
-              height="170"
-              src="https://www.youtube.com/embed/DUMMY_ID"
-              title="Відгук 1"
-              allowFullScreen
-            ></iframe>
-            <iframe
-              className="rounded-3xl shadow-[0_0_30px_rgba(251,174,88,0.25)] ring-1 ring-[rgba(231,104,31,0.15)]"
-              width="300"
-              height="170"
-              src="https://www.youtube.com/embed/DUMMY_ID2"
-              title="Відгук 2"
-              allowFullScreen
-            ></iframe>
+          <div className="flex justify-center flex-wrap gap-6">
+            {/* Відгук — Надія */}
+            <motion.video
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="rounded-3xl w-[300px] object-contain aspect-auto bg-black"
+              controls
+              preload="none"
+              playsInline
+              poster="/images/nadia-poster.jpg"
+            >
+              <source src="/video/nadia.MP4" type="video/mp4" />
+              Твій браузер не підтримує відтворення відео.
+            </motion.video>
+
+            {/* Відгук — Світлана */}
+            <motion.video
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="rounded-3xl w-[300px] object-contain aspect-auto bg-black"
+              controls
+              preload="none"
+              playsInline
+              poster="/images/svitlana-poster.jpg"
+            >
+              <source src="/video/svitlana.MP4" type="video/mp4" />
+              Твій браузер не підтримує відтворення відео.
+            </motion.video>
           </div>
         </div>
       </div>
+
+      {/* === Низовий градієнт === */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0E0E0E] to-transparent pointer-events-none" />
     </section>
   );

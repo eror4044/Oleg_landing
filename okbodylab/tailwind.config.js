@@ -26,6 +26,20 @@ module.exports = {
         'cta-gradient': 'linear-gradient(135deg, #E7681F, #FBAE58)',
         'accent-glow': 'radial-gradient(circle at 50% 50%, rgba(251,174,88,0.25), transparent 70%)',
       },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.3s ease-out',
+        'accordion-up': 'accordion-up 0.25s ease-in',
+      },
     },
   },
   plugins: [],

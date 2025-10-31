@@ -1,30 +1,48 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-const results = [
-  {
-    before: '/images/before1.jpg',
-    after: '/images/after1.jpg',
-    name: 'Анна, 32 роки',
-    text: '−8 кг за 5 днів інтенсиву, покращилось самопочуття і настрій!',
-  },
-  {
-    before: '/images/before2.jpg',
-    after: '/images/after2.jpg',
-    name: 'Марія, 28 років',
-    text: 'Зникли набряки, стала легкість і енергія, тіло підтягнулося.',
-  },
-  {
-    before: '/images/before3.jpg',
-    after: '/images/after3.jpg',
-    name: 'Ірина, 36 років',
-    text: 'Почала їсти правильно — вага пішла сама собою ❤️',
-  },
+const photos = Array.from({ length: 19 }, (_, i) => ({
+  src: `/images/photo_${i + 1}_2025-10-31_13-29-55.jpg`,
+}));
+
+const videos = [
+  { src: '/video/IMG_6184.MP4', poster: '/images/IMG_6184-poster.jpg' },
+  { src: '/video/IMG_6186.MP4', poster: '/images/IMG_6186-poster.jpg' },
+  { src: '/video/IMG_6187.MP4', poster: '/images/IMG_6187-poster.jpg' },
+  { src: '/video/IMG_6193.MP4', poster: '/images/IMG_6193-poster.jpg' },
+  { src: '/video/IMG_6195.MP4', poster: '/images/IMG_6195-poster.jpg' },
+  { src: '/video/IMG_6222.MP4', poster: '/images/IMG_6222-poster.jpg' },
+  { src: '/video/IMG_6225.MP4', poster: '/images/IMG_6225-poster.jpg' },
 ];
 
 export default function ResultsSection() {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  // === Клавіші навігації у fullscreen ===
+  const handleKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (selected === null) return;
+      if (e.key === 'Escape') setSelected(null);
+      if (e.key === 'ArrowRight')
+        setSelected((prev) =>
+          prev === photos.length - 1 ? 0 : (prev ?? 0) + 1
+        );
+      if (e.key === 'ArrowLeft')
+        setSelected((prev) =>
+          prev === 0 ? photos.length - 1 : (prev ?? 0) - 1
+        );
+    },
+    [selected]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [handleKey]);
+
   return (
     <section
       id="results"
@@ -43,100 +61,120 @@ export default function ResultsSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12"
         >
-          <span className="text-[rgba(251,174,88,1)]">Результати клієнток</span>{' '}
+          <span className="text-[rgba(251,174,88,1)]">Результати клієнтів</span>{' '}
           <span className="text-[#FFD9B5]/90">до</span> /{' '}
           <span className="text-[rgba(231,104,31,1)]">після</span>
         </motion.h2>
 
-        {/* === Галерея фото до/після === */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {results.map((r, i) => (
+        {/* === Горизонтальний скрол фото === */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[rgba(251,174,88,0.4)] scrollbar-track-transparent pb-6"
+        >
+          {photos.map((p, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="rounded-3xl overflow-hidden border border-[rgba(251,174,88,0.2)] bg-[rgba(20,20,20,0.85)] backdrop-blur-sm shadow-[0_0_40px_rgba(251,174,88,0.1)] hover:shadow-[0_0_50px_rgba(251,174,88,0.18)] transition-all"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative flex-shrink-0 w-[240px] md:w-[300px] snap-center rounded-3xl overflow-hidden border border-[rgba(251,174,88,0.2)] bg-[rgba(20,20,20,0.85)] shadow-[0_0_25px_rgba(251,174,88,0.1)] hover:shadow-[0_0_40px_rgba(251,174,88,0.2)] transition-all cursor-pointer"
+              onClick={() => setSelected(i)}
             >
-              <div className="grid grid-cols-2">
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src={r.before}
-                    alt={`${r.name} — до`}
-                    fill
-                    className="object-cover grayscale"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-2 left-2 text-xs bg-[rgba(251,174,88,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
-                    До
-                  </div>
-                </div>
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src={r.after}
-                    alt={`${r.name} — після`}
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-2 left-2 text-xs bg-[rgba(231,104,31,0.85)] text-dark font-semibold px-2 py-0.5 rounded-full shadow-md">
-                    Після
-                  </div>
-                </div>
-              </div>
-              <div className="p-5">
-                <p className="font-semibold text-[rgba(251,174,88,1)]">
-                  {r.name}
-                </p>
-                <p className="text-sm text-[#FFD9B5]/80 mt-2">{r.text}</p>
-              </div>
+              <Image
+                src={p.src}
+                alt={`Результат ${i + 1}`}
+                width={300}
+                height={400}
+                className="object-cover w-full h-full"
+                loading="lazy"
+              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* === Відео-відгуки === */}
+        {/* === Блок відео === */}
         <div className="mt-16">
           <p className="text-lg text-[#FFD9B5]/90 mb-6">
             🎥 Дивись живі відео-відгуки учасниць
           </p>
-          <div className="flex justify-center flex-wrap gap-6">
-            {/* Відгук — Надія */}
-            <motion.video
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="rounded-3xl w-[300px] object-contain aspect-auto bg-black"
-              controls
-              preload="none"
-              playsInline
-              poster="/images/nadia-poster.jpg"
-            >
-              <source src="/video/nadia.MP4" type="video/mp4" />
-              Твій браузер не підтримує відтворення відео.
-            </motion.video>
-
-            {/* Відгук — Світлана */}
-            <motion.video
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="rounded-3xl w-[300px] object-contain aspect-auto bg-black"
-              controls
-              preload="none"
-              playsInline
-              poster="/images/svitlana-poster.jpg"
-            >
-              <source src="/video/svitlana.MP4" type="video/mp4" />
-              Твій браузер не підтримує відтворення відео.
-            </motion.video>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[rgba(251,174,88,0.4)] scrollbar-track-transparent pb-6 justify-start md:justify-center"
+          >
+            {videos.map((v, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-shrink-0 w-[220px] md:w-[250px] snap-center rounded-3xl overflow-hidden border border-[rgba(251,174,88,0.2)] bg-[rgba(20,20,20,0.85)] shadow-[0_0_25px_rgba(251,174,88,0.1)] hover:shadow-[0_0_40px_rgba(251,174,88,0.2)] transition-all"
+              >
+                <video
+                  src={v.src}
+                  poster={v.poster}
+                  className="w-full aspect-[9/16] object-cover"
+                  preload="none"
+                  playsInline
+                  controls
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* === Низовий градієнт === */}
+      {/* === Модальне фото з навігацією === */}
+      <AnimatePresence>
+        {selected !== null && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 cursor-zoom-out"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelected(null)}
+          >
+            <motion.img
+              src={photos[selected].src}
+              alt="Full photo"
+              className="max-h-[90vh] max-w-[90vw] rounded-2xl shadow-[0_0_50px_rgba(251,174,88,0.4)] object-contain select-none"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+
+            {/* Стрілки */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelected(
+                  selected === 0 ? photos.length - 1 : selected - 1
+                );
+              }}
+              className="absolute left-6 md:left-10 text-white/70 hover:text-[rgba(251,174,88,1)] text-4xl font-bold select-none"
+            >
+              ‹
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelected(
+                  selected === photos.length - 1 ? 0 : selected + 1
+                );
+              }}
+              className="absolute right-6 md:right-10 text-white/70 hover:text-[rgba(251,174,88,1)] text-4xl font-bold select-none"
+            >
+              ›
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* === Градієнт унизу === */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0E0E0E] to-transparent pointer-events-none" />
     </section>
   );

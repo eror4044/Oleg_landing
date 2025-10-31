@@ -16,7 +16,6 @@ const videos = [
   { src: '/video/IMG_6195.MP4', poster: '/images/IMG_6195-poster.jpg' },
   { src: '/video/IMG_6222.MP4', poster: '/images/IMG_6222-poster.jpg' },
   { src: '/video/IMG_6194.MP4', poster: '/images/IMG_6194-poster.jpg' },
-  { src: '/video/IMG_6254.MP4', poster: '/images/IMG_6254-poster.jpg' },
 ];
 
 export default function ResultsSection() {

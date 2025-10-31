@@ -89,7 +89,7 @@ export default function AfterCourseSection() {
             95%
           </p>
           <p className="text-[#FFD9B5]/80 text-sm">
-            учасниць утримують результат навіть після завершення курсу
+            учасників утримують результат навіть після завершення курсу
           </p>
         </motion.div>
       </div>

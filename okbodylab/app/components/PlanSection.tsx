@@ -93,8 +93,9 @@ export default function PlanSection() {
             {/* === Header === */}
             <div className="relative max-w-5xl mx-auto text-center mb-20 px-6">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    <span className="text-[rgba(251,174,88,1)]">План курсу </span>
-                    <p>Body Lab</p>
+                    <p>План курсу </p>
+                    <span className="text-[rgba(251,174,88,1)]">Body Lab</span>
+                    
                 </h2>
                 <p className="text-[#FFD9B5]/80 max-w-2xl mx-auto text-[17px] leading-relaxed">
                     5 днів — 5 кроків до нової тебе: Зменшення набряків, зміна харчової звички , тонус мʼязів та еластичність твого тіла.

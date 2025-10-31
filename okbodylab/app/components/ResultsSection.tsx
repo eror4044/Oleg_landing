@@ -11,12 +11,12 @@ const photos = Array.from({ length: 19 }, (_, i) => ({
 
 const videos = [
   { src: '/video/IMG_6184.MP4', poster: '/images/IMG_6184-poster.jpg' },
-  { src: '/video/IMG_6186.MP4', poster: '/images/IMG_6186-poster.jpg' },
   { src: '/video/IMG_6187.MP4', poster: '/images/IMG_6187-poster.jpg' },
   { src: '/video/IMG_6193.MP4', poster: '/images/IMG_6193-poster.jpg' },
   { src: '/video/IMG_6195.MP4', poster: '/images/IMG_6195-poster.jpg' },
   { src: '/video/IMG_6222.MP4', poster: '/images/IMG_6222-poster.jpg' },
-  { src: '/video/IMG_6225.MP4', poster: '/images/IMG_6225-poster.jpg' },
+  { src: '/video/IMG_6194.MP4', poster: '/images/IMG_6194-poster.jpg' },
+  { src: '/video/IMG_6254.MP4', poster: '/images/IMG_6254-poster.jpg' },
 ];
 
 export default function ResultsSection() {
@@ -109,14 +109,14 @@ export default function ResultsSection() {
         {/* === Блок відео === */}
         <div className="mt-16">
           <p className="text-lg text-[#FFD9B5]/90 mb-6">
-            🎥 Дивись живі відео-відгуки учасниць
+            🎥 Дивись живі відео-відгуки учасників
           </p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 justify-start md:justify-center"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6"
           >
             {videos.map((v, i) => (
               <motion.div
@@ -137,6 +137,7 @@ export default function ResultsSection() {
             ))}
           </motion.div>
         </div>
+
       </div>
 
       {/* === Модальне фото з навігацією та хрестиком === */}

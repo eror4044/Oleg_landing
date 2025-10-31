@@ -20,12 +20,8 @@ export default function HeroSection() {
     return (
         <section
             id="hero"
-            // isolate — свой контекст наложения; overflow-hidden чтобы фоны не выходили
             className="relative isolate text-light pt-16 pb-24 sm:pb-28 bg-[#0E0E0E] overflow-hidden"
         >
-            {/* если есть декоративные ауры — следим за pointer-events-none и -z-10 */}
-            {/* <BackgroundDecor className="pointer-events-none absolute inset-0 -z-10" /> */}
-
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 grid md:grid-cols-2 gap-12 sm:gap-14 items-center">
                 {/* LEFT */}
                 <motion.div
@@ -143,9 +139,9 @@ export default function HeroSection() {
                         />
                         <div className="absolute inset-x-0 bottom-0 bg-black/70 p-3 sm:p-5 text-center sm:text-left">
                             <p className="text-base font-semibold">
-                                <span className="text-primary">Олег Козлов</span> — фітнес тренер та нутриціолог, який знає як влашнований твій організм!
+                                <span className="text-primary">Олег Козлов</span> — фітнес тренер та нутриціолог, який знає як влаштований твій організм!
                             </p>
-                            <p className="text-xs opacity-80">Майстер спорту України з силового екстріму</p>
+                            <p className="text-xs opacity-80">Майстер спорту міжнародного класу</p>
                         </div>
                     </div>
                 </motion.div>

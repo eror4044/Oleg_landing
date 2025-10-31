@@ -73,9 +73,9 @@ export default function ResultsSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12"
         >
-          <span className="text-[rgba(251,174,88,1)]">Результати клієнтів</span>{' '}
-          <span className="text-[#FFD9B5]/90">до</span> /{' '}
-          <span className="text-[rgba(231,104,31,1)]">після</span>
+          <span className="text-[rgba(251,174,88,1)]">Результати клієнтів:</span>{' '}
+          <span className="text-[#FFD9B5]/90">До</span> /{' '}
+          <span className="text-[rgba(231,104,31,1)]">Після</span>
         </motion.h2>
 
         {/* === Горизонтальний скрол фото === */}

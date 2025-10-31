@@ -34,7 +34,7 @@ export default function ForWhoSection() {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#0E0E0E]" />
         {/* Можно вернуть мягкие градиенты, но они не должны ловить клики */}
-        <div className="absolute inset-x-0 bottom-0 h-[40vh] [background:radial-gradient(120%_100%_at_50%_100%,rgba(231,104,31,0.18)_0%,rgba(251,174,88,0.12)_40%,transparent_80%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[25vh] [background:radial-gradient(120%_100%_at_50%_100%,rgba(231,104,31,0.15)_0%,rgba(251,174,88,0.1)_40%,transparent_80%)]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
@@ -78,7 +78,7 @@ export default function ForWhoSection() {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0E0E0E] to-transparent pointer-events-none" />
+      <div className="absolute -bottom-[1px] left-0 right-0 h-24 sm:h-28 bg-gradient-to-t from-[#0E0E0E] via-[#0E0E0E]/80 to-transparent pointer-events-none z-[-1]" />
     </section>
   );
 }

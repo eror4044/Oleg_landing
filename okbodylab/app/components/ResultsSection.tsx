@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { X } from 'lucide-react'; // Іконка хрестика
 
 const photos = Array.from({ length: 19 }, (_, i) => ({
   src: `/images/photo_${i + 1}_2025-10-31_13-29-55.jpg`,
@@ -43,6 +44,17 @@ export default function ResultsSection() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [handleKey]);
 
+  // === Блокування скролу при відкритій модалці ===
+  useEffect(() => {
+    if (selected !== null) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+  }, [selected]);
+
   return (
     <section
       id="results"
@@ -72,7 +84,7 @@ export default function ResultsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[rgba(251,174,88,0.4)] scrollbar-track-transparent pb-6"
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6"
         >
           {photos.map((p, i) => (
             <motion.div
@@ -104,7 +116,7 @@ export default function ResultsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[rgba(251,174,88,0.4)] scrollbar-track-transparent pb-6 justify-start md:justify-center"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6 justify-start md:justify-center"
           >
             {videos.map((v, i) => (
               <motion.div
@@ -127,11 +139,11 @@ export default function ResultsSection() {
         </div>
       </div>
 
-      {/* === Модальне фото з навігацією === */}
+      {/* === Модальне фото з навігацією та хрестиком === */}
       <AnimatePresence>
         {selected !== null && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 cursor-zoom-out"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -145,7 +157,19 @@ export default function ResultsSection() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
             />
+
+            {/* Кнопка закриття */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelected(null);
+              }}
+              className="absolute top-6 right-6 md:top-10 md:right-10 bg-[rgba(20,20,20,0.6)] hover:bg-[rgba(251,174,88,0.2)] text-white/90 p-3 rounded-full transition-all backdrop-blur-md"
+            >
+              <X className="w-6 h-6 text-[rgba(251,174,88,1)]" />
+            </button>
 
             {/* Стрілки */}
             <button

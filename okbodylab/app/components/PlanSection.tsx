@@ -1,227 +1,135 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { Flame, Utensils, Brain, Heart, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { usePurchaseModal } from './PurchaseModalContext';
+import { useEffect, useMemo, useState } from 'react';
+import BonusTimer from './BonusTimer';
 
-const days = [
-    {
-        day: 'День 1',
-        title: 'Підготовка організму до змін та зниження набряків',
-        points: [
-            'Персональний розбір типових помилок у харчуванні',
-            'Дієва система харчування, щоб схуднути вже сьогодні',
-            'Руханка на все тіло',
-        ],
-        icon: <ShieldCheck className="w-6 h-6 text-[rgba(251,174,88,1)]" />,
-    },
-    {
-        day: 'День 2',
-        title: 'Як їсти смачно, бути ситим і не переїдати',
-        points: [
-            '5 простих і смачних сніданків, обідів і вечерь',
-            'Загальне тренування з акцентом на спину',
-        ],
-        icon: <Utensils className="w-6 h-6 text-[rgba(231,104,31,1)]" />,
-    },
-    {
-        day: 'День 3',
-        title: 'Як уникнути здуття, закрепів і “зупинки” травлення',
-        points: [
-            'Подкаст від гастроентеролога: «Кишковий комфорт на дефіциті калорій»',
-            'Загальне тренування на все тіло',
-        ],
-        icon: <Brain className="w-6 h-6 text-[rgba(251,174,88,1)]" />,
-    },
-    {
-        day: 'День 4',
-        title: 'Як не зациклюватися на ідеалі та зберегти баланс',
-        points: [
-            'Подкаст від психолога: «Як не зірватися на дефіциті калорій»',
-            'Загальне тренування з акцентом на ноги',
-        ],
-        icon: <Heart className="w-6 h-6 text-[rgba(231,104,31,1)]" />,
-    },
-    {
-        day: 'День 5',
-        title: 'Як адаптувати організм без шкоди для здоров’я',
-        points: [
-            'Подкасти від гастроентеролога та психолога',
-            'Персональний розбір харчування та діагностика організму',
-            'Акційна пропозиція на індивідуальний супровід 💫',
-        ],
-        icon: <Flame className="w-6 h-6 text-[rgba(251,174,88,1)]" />,
-    },
+const plan = [
+  {
+    day: 'ДЕНЬ 1',
+    items: [
+      'Підготовка організму до змін та зниження набряків',
+      'Персональний розбір типових помилок у харчуванні',
+      'Система харчування, з якою ти почнеш худнути вже сьогодні',
+      'Руханка на все тіло',
+    ],
+  },
+  {
+    day: 'ДЕНЬ 2',
+    items: [
+      'Як їсти смачно, бути ситим і не переїдати на дефіциті',
+      '5 простих сніданків, обідів та вечерь для комфортного схуднення',
+      'Тренування з акцентом на спину',
+    ],
+  },
+  {
+    day: 'ДЕНЬ 3',
+    items: [
+      'Як уникнути здуття, закрепів і “зупинки” травлення',
+      'Подкаст від гастроентеролога: “Кишковий комфорт на дефіциті калорій”',
+      'Тренування на все тіло',
+    ],
+  },
+  {
+    day: 'ДЕНЬ 4',
+    items: [
+      'Як не зациклюватись на ідеалі та зберігати баланс',
+      'Подкаст від психолога: “Як зберегти мотивацію і не зірватись”',
+      'Тренування з акцентом на ноги',
+    ],
+  },
+  {
+    day: 'ДЕНЬ 5',
+    items: [
+      'Як адаптувати організм до дефіциту без шкоди для печінки',
+      'Подкаст від гастроентеролога: “Як не перегоріти на дієті”',
+      'Подкаст від психолога: “Як не повернути вагу після схуднення”',
+      'Персональний розбір харчування + бонусна пропозиція',
+    ],
+  },
 ];
 
+const BONUS_TIMER_SECONDS = 105;
+
 export default function PlanSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ['start 80%', 'end 20%'],
-    });
-    const { openModal } = usePurchaseModal();
-    const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const { openModal } = usePurchaseModal();
+  const [timeLeft, setTimeLeft] = useState(BONUS_TIMER_SECONDS);
 
-    // === Countdown Timer ===
-    const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 минут
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const interval = window.setInterval(() => setTimeLeft((prev) => Math.max(0, prev - 1)), 1000);
+    return () => window.clearInterval(interval);
+  }, [timeLeft]);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-        }, 1000);
-        return () => clearInterval(timer);
-    }, []);
+  const timer = useMemo(() => {
+    const m = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
+    const s = String(timeLeft % 60).padStart(2, '0');
+    return `${m}:${s}`;
+  }, [timeLeft]);
 
-    const formatTime = (seconds: number) => {
-        const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-        const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-        const s = String(seconds % 60).padStart(2, '0');
-        return `${h}:${m}:${s}`;
-    };
-
-    return (
-        <section
-            id="plan"
-            className="relative overflow-hidden text-light py-24 sm:py-28"
+  return (
+    <section id="plan" className="relative overflow-hidden bg-[#fff6f1] py-10 sm:py-14 text-[#1a1a1a]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(255,79,162,0.1),_transparent_60%)]" aria-hidden="true" />
+      <div className="relative mx-auto w-full max-w-5xl px-5 sm:px-6 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45 }}
+          className="space-y-3 text-left sm:text-center"
         >
-            {/* === Gradient background === */}
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(251,174,88,0.15)_5%,rgba(14,14,14,0.95)_85%)] pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-[50%] bg-[radial-gradient(circle_at_bottom,rgba(231,104,31,0.15),transparent_70%)] opacity-70" />
+          <span className="inline-flex items-center justify-center rounded-full bg-white px-5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[#ff4fa2] shadow-[0_8px_18px_rgba(255,126,95,0.15)]">
+            План інтенсиву
+          </span>
+          <h2 className="font-extrabold leading-tight text-[1.9rem] sm:text-[2.15rem]">ПЛАН</h2>
+          <p className="text-[0.95rem] leading-relaxed text-[#333] max-w-[540px] mx-auto">
+            5 днів — і жодної зайвої секунди. Щодня ти отримуєш чіткий план, тренування, подкасти та підтримку.
+          </p>
+        </motion.div>
 
-            {/* === Header === */}
-            <div className="relative max-w-5xl mx-auto text-center mb-20 px-6">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    <p>План курсу </p>
-                    <span className="text-[rgba(251,174,88,1)]">Body Lab</span>
-                    
-                </h2>
-                <p className="text-[#FFD9B5]/80 max-w-2xl mx-auto text-[17px] leading-relaxed">
-                    5 днів — 5 кроків до нової тебе: Зменшення набряків, зміна харчової звички , тонус мʼязів та еластичність твого тіла.
-                </p>
-            </div>
+        {/* === Дні інтенсиву === */}
+        <div className="mt-8 grid gap-4 sm:gap-6">
+          {plan.map((day, index) => (
+            <motion.article
+              key={day.day}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              className="rounded-[1.4rem] border border-[#ffd2e0] bg-white/90 px-4 py-4 shadow-[0_8px_24px_rgba(255,126,95,0.12)] sm:px-6 sm:py-6"
+            >
+              <header className="flex items-center gap-3">
+                <h3 className="text-[0.9rem] font-semibold uppercase tracking-[0.15em] text-[#ff7e5f]">{day.day}</h3>
+              </header>
 
-            {/* === Roadmap line === */}
-            <div ref={ref} className="relative max-w-3xl mx-auto px-6">
-                <div className="absolute left-1/2 top-0 bottom-0 w-[3px] bg-[rgba(251,174,88,0.15)] -translate-x-1/2 rounded-full" />
-                <motion.div
-                    style={{ height: lineHeight }}
-                    className="absolute left-1/2 top-0 w-[3px] bg-gradient-to-b from-[rgba(251,174,88,1)] via-[rgba(231,104,31,0.8)] to-[rgba(14,14,14,0.9)] -translate-x-1/2 rounded-full origin-top shadow-[0_0_20px_rgba(251,174,88,0.4)]"
-                />
+              <ul className="mt-3 space-y-1.5 text-[0.9rem] leading-snug sm:space-y-2 sm:text-[0.95rem]">
+                {day.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <span className="mt-[3px] flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f] text-white shadow-[0_1px_4px_rgba(255,79,162,0.3)]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-3 w-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
+          ))}
+        </div>
 
-                <div className="flex flex-col gap-20">
-                    {days.map((day, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 80, scale: 0.9, rotateX: 10 }}
-                            whileInView={{
-                                opacity: 1,
-                                y: 0,
-                                scale: 1,
-                                rotateX: 0,
-                            }}
-                            transition={{
-                                duration: 0.8,
-                                delay: i * 0.15,
-                                ease: [0.25, 0.1, 0.25, 1],
-                            }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            className={`relative flex flex-col md:flex-row items-center gap-6 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''
-                                }`}
-                        >
-                            {/* === Icon === */}
-                            <div className="relative z-10 shrink-0">
-                                <motion.div
-                                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[rgba(251,174,88,0.25)] to-[rgba(231,104,31,0.2)] blur-2xl"
-                                    animate={{
-                                        scale: [1, 1.4, 1],
-                                        opacity: [0.4, 0.8, 0.4],
-                                    }}
-                                    transition={{
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        ease: 'easeInOut',
-                                    }}
-                                />
-                                <div className="relative flex items-center justify-center w-16 h-16 rounded-full border-[3px] border-[rgba(251,174,88,0.4)] bg-[rgba(20,20,20,0.85)] shadow-[0_0_30px_rgba(251,174,88,0.15)]">
-                                    {day.icon}
-                                </div>
-                            </div>
-
-                            {/* === Calendar card === */}
-                            <motion.div
-                                whileHover={{
-                                    scale: 1.04,
-                                    y: -3,
-                                    boxShadow:
-                                        '0 10px 28px rgba(251,174,88,0.15), 0 0 40px rgba(231,104,31,0.1)',
-                                }}
-                                transition={{ duration: 0.3 }}
-                                className="relative md:w-[60%] rounded-2xl border border-[rgba(251,174,88,0.2)] overflow-hidden bg-[rgba(255,255,255,0.06)] backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.2)]"
-                            >
-                                <div className="bg-gradient-to-r from-[rgba(251,174,88,0.9)] to-[rgba(231,104,31,0.8)] text-dark font-bold text-lg py-2 px-5 flex items-center justify-between border-b border-[rgba(251,174,88,0.3)]">
-                                    <span>{day.day}</span>
-                                    <span className="text-sm opacity-80">📅</span>
-                                </div>
-
-                                <div className="absolute top-[40px] left-0 right-0 h-[1px] bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0)_0,rgba(251,174,88,0.3)_5px,transparent_10px)] opacity-70" />
-
-                                <div className="p-6 text-left">
-                                    <h3 className="text-[rgba(251,174,88,1)] text-lg font-semibold mb-2">
-                                        {day.title}
-                                    </h3>
-                                    <ul className="list-disc list-inside text-[#FFD9B5]/85 text-[15px] leading-relaxed space-y-1">
-                                        {day.points.map((p, idx) => (
-                                            <li key={idx}>{p}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-
-            {/* === Countdown / CTA === */}
-            <div className="relative mt-28 text-center">
-                <div className="inline-block bg-[rgba(20,20,20,0.85)] border border-[rgba(251,174,88,0.25)] rounded-[2rem] px-8 py-8 shadow-[0_0_40px_rgba(251,174,88,0.15)] backdrop-blur-md">
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                        <div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[rgba(251,174,88,1)] to-[rgba(231,104,31,1)] shadow-[0_0_30px_rgba(251,174,88,0.3)]">
-                            <span className="text-dark font-extrabold text-sm leading-tight text-center">
-                                ЗНИЖКА<br />
-                                <span className="text-xl">−82%</span>
-                            </span>
-                        </div>
-                        <img
-                            src="/images/ok_body_lab_logo.png"
-                            alt="OK Body Lab"
-                            className="h-14 w-auto opacity-90"
-                        />
-                    </div>
-
-                    <p className="text-[#FFD9B5]/80 text-base mb-1">
-                        ЗНИЖКА ЗАКІНЧИТЬСЯ ЧЕРЕЗ
-                    </p>
-                    <motion.p
-                        animate={{ opacity: [1, 0.7, 1] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        className="text-[32px] md:text-[38px] font-extrabold tracking-widest text-[rgba(251,174,88,1)] mb-6 drop-shadow-[0_0_10px_rgba(251,174,88,0.4)] font-mono"
-                    >
-                        {formatTime(timeLeft)}
-                    </motion.p>
-
-                    <motion.button
-                        onClick={openModal}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="rounded-full px-12 py-4 font-semibold text-dark text-lg bg-gradient-to-r from-[rgba(251,174,88,1)] to-[rgba(231,104,31,1)] shadow-[0_0_40px_rgba(251,174,88,0.3)]"
-                    >
-                        ВЗЯТИ УЧАСТЬ ЗА 249 ГРН
-                    </motion.button>
-                </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0E0E0E] to-transparent pointer-events-none" />
-        </section>
-    );
+        <BonusTimer/>
+      </div>
+    </section>
+  );
 }

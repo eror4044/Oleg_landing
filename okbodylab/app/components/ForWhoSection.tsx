@@ -1,84 +1,52 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, Brain, UtensilsCrossed, Zap } from 'lucide-react';
-import Image from 'next/image';
 
-const items = [
-  {
-    icon: <UtensilsCrossed className="w-8 h-8 text-primary" />,
-    text: 'Втомилась від хаотичного харчування та постійних “зривів”',
-  },
-  {
-    icon: <Brain className="w-8 h-8 text-accent" />,
-    text: 'Не можеш почати і потребуєш чіткої системи',
-  },
-  {
-    icon: <Heart className="w-8 h-8 text-secondary" />,
-    text: 'Хочеш м’яко, але ефективно увійти у процес схуднення',
-  },
-  {
-    icon: <Zap className="w-8 h-8 text-primary" />,
-    text: 'Хочеш швидко побачити зміни у фігурі й самопочутті',
-  },
+const reasons = [
+  'втомився від хаотичного харчування та постійних “зривів”',
+  'не можеш почати і потребуєш чіткої системи',
+  'хочеш м’яко, але ефективно увійти у процес схуднення',
+  'хочеш швидко побачити зміни у фігурі й самопочутті',
 ];
 
 export default function ForWhoSection() {
   return (
-    <section
-      id="for-who"
-      // isolate: свой слой; mt-8 на мобайле — добавляем «воздуха» от Hero
-      className="relative sm:mt-12 sm:py-28 text-light overflow-hidden z-0"
-    >
-      {/* Декор — строго под контентом */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#0E0E0E]" />
-        {/* Можно вернуть мягкие градиенты, но они не должны ловить клики */}
-        <div className="absolute inset-x-0 bottom-0 h-[25vh] [background:radial-gradient(120%_100%_at_50%_100%,rgba(231,104,31,0.15)_0%,rgba(251,174,88,0.1)_40%,transparent_80%)]" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto px-6 text-center">
-        <div className="mb-10 flex justify-center">
-          <Image
-            src="/images/ok_body_lab_logo.png"
-            alt="OK Body Lab logo"
-            width={120}
-            height={120}
-            priority
-            className="object-contain drop-shadow-[0_0_20px_rgba(251,174,88,0.4)]"
-          />
-        </div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section id="for-who" className="relative overflow-hidden bg-[#fff6f1] py-12 text-[#1a1a1a] sm:py-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,126,95,0.22),_transparent_55%)]" aria-hidden="true" />
+      <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-8 px-5 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-bold text-secondary mb-12 drop-shadow-[0_0_10px_rgba(251,174,88,0.3)]"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-3 text-left sm:text-center"
         >
-          Цей курс для тебе, якщо ти:
-        </motion.h2>
+          <span className="inline-flex items-center justify-center rounded-full bg-white px-5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[#ff4fa2] shadow-[0_8px_18px_rgba(255,126,95,0.15)]">
+            цей курс для тебе
+          </span>
+          <h2 className="font-extrabold leading-tight text-[1.75rem] sm:text-[2.1rem]">
+            Цей курс для тебе, якщо ти:
+          </h2>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item, i) => (
+        <div className="grid gap-3 sm:gap-4">
+          {reasons.map((reason, index) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
+              key={reason}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="group relative rounded-3xl p-6 sm:p-8 bg-[rgba(28,28,28,0.85)] border border-primary/20 shadow-soft hover:shadow-glow hover:scale-[1.03] transition-transform duration-300"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.05, duration: 0.45 }}
+              className="flex items-start gap-3 rounded-2xl border border-[#ffd2e0] bg-white px-4 py-3 text-[0.95rem] font-semibold leading-relaxed shadow-[0_12px_26px_rgba(255,126,95,0.12)]"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,174,88,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-              <div className="relative flex flex-col items-center text-center">
-                <div className="mb-4">{item.icon}</div>
-                <p className="text-base sm:text-lg text-muted leading-snug">{item.text}</p>
-              </div>
+              <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#ff4fa2] text-xs font-bold text-white">
+                {index + 1}
+              </span>
+              <span>{reason}</span>
             </motion.div>
           ))}
         </div>
       </div>
-      <div className="absolute -bottom-[1px] left-0 right-0 h-24 sm:h-28 bg-gradient-to-t from-[#0E0E0E] via-[#0E0E0E]/80 to-transparent pointer-events-none z-[-1]" />
     </section>
   );
 }

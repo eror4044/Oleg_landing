@@ -6,97 +6,88 @@ export default function BackgroundAura() {
   const auraRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = auraRef.current;
-    if (!el) return;
+    const node = auraRef.current;
+    if (!node) return;
 
-    let frame = 0;
     let ticking = false;
 
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY || 0;
-          // лёгкое смещение (чем дальше прокрутка, тем чуть больше параллакса)
-          const translate = scrollY * 0.03;
-          el.style.transform = `translate3d(0, ${translate}px, 0)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
+    const handleScroll = () => {
+      if (ticking) return;
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY || 0;
+        node.style.transform = `translate3d(0, ${scrollY * 0.04}px, 0)`;
+        ticking = false;
+      });
+      ticking = true;
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(frame);
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div
       ref={auraRef}
-      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none will-change-transform"
-      style={{ backgroundColor: '#0E0E0E' }}
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden will-change-transform"
+      style={{ background: 'linear-gradient(160deg, #FFF5EB 0%, #FFFFFF 55%, #FFEFE5 100%)' }}
     >
-      {/* === Основная дымная волна === */}
       <div
-        className="absolute inset-0 opacity-45 blur-[100px] animate-[smokeDrift_38s_ease-in-out_infinite]"
+        className="absolute inset-0 opacity-60 blur-[110px] animate-[pastelDrift_42s_ease-in-out_infinite]"
         style={{
           background:
-            'conic-gradient(from 90deg at 50% 50%, rgba(251,174,88,0.22), rgba(231,104,31,0.16), rgba(251,174,88,0.22))',
+            'radial-gradient(circle at 15% 20%, rgba(255, 180, 123, 0.45), transparent 45%), radial-gradient(circle at 80% 25%, rgba(255, 126, 95, 0.38), transparent 50%)',
         }}
       />
 
-      {/* === Вторичная волна === */}
       <div
-        className="absolute inset-0 opacity-35 blur-[120px] animate-[smokeWave_52s_ease-in-out_infinite]"
+        className="absolute inset-0 opacity-40 blur-[140px] animate-[pastelWave_60s_ease-in-out_infinite]"
         style={{
           background:
-            'radial-gradient(circle at 40% 60%, rgba(231,104,31,0.18), transparent 75%)',
+            'radial-gradient(circle at 30% 70%, rgba(255, 205, 176, 0.5), transparent 60%), radial-gradient(circle at 75% 65%, rgba(255, 186, 150, 0.45), transparent 65%)',
         }}
       />
 
-      {/* === Мягкое дыхание / свечение === */}
       <div
-        className="absolute inset-0 opacity-25 blur-[140px] animate-[auraBreath_20s_ease-in-out_infinite]"
+        className="absolute inset-0 opacity-35 blur-[150px] animate-[glowBreath_26s_ease-in-out_infinite]"
         style={{
           background:
-            'radial-gradient(circle at 50% 50%, rgba(251,174,88,0.12), transparent 80%)',
+            'radial-gradient(circle at 50% 50%, rgba(255, 206, 186, 0.45), transparent 70%)',
         }}
       />
 
       <style jsx global>{`
-        @keyframes smokeDrift {
+        @keyframes pastelDrift {
           0% {
-            transform: translate3d(-2%, -2%, 0) rotate(0deg) scale(1);
+            transform: translate3d(-4%, -3%, 0) scale(1);
           }
           50% {
-            transform: translate3d(2%, 3%, 0) rotate(180deg) scale(1.05);
+            transform: translate3d(3%, 2%, 0) scale(1.05);
           }
           100% {
-            transform: translate3d(-2%, -2%, 0) rotate(360deg) scale(1);
+            transform: translate3d(-4%, -3%, 0) scale(1);
           }
         }
 
-        @keyframes smokeWave {
+        @keyframes pastelWave {
           0% {
-            transform: translate3d(2%, -3%, 0) rotate(0deg) scale(1.05);
+            transform: translate3d(3%, 4%, 0) scale(1.05);
           }
           50% {
-            transform: translate3d(-2%, 2%, 0) rotate(180deg) scale(0.96);
+            transform: translate3d(-3%, -3%, 0) scale(0.97);
           }
           100% {
-            transform: translate3d(2%, -3%, 0) rotate(360deg) scale(1.05);
+            transform: translate3d(3%, 4%, 0) scale(1.05);
           }
         }
 
-        @keyframes auraBreath {
-          0%, 100% {
-            opacity: 0.25;
+        @keyframes glowBreath {
+          0%,
+          100% {
+            opacity: 0.35;
             transform: scale(1);
           }
           50% {
-            opacity: 0.45;
+            opacity: 0.55;
             transform: scale(1.08);
           }
         }

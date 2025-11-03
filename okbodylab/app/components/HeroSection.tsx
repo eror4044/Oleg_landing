@@ -180,9 +180,16 @@ export default function HeroSection() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4 }}
               >
-                <video controls preload="metadata" poster={video.poster} className="h-52 w-full bg-black object-cover sm:h-56">
-                  <source src={video.src} type="video/mp4" />
-                </video>
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-[1.4rem] bg-black">
+                  <video
+                    controls
+                    preload="metadata"
+                    poster={video.poster}
+                    className="absolute inset-0 h-full w-full object-contain"
+                  >
+                    <source src={video.src} type="video/mp4" />
+                  </video>
+                </div>
                 <figcaption className="px-4 py-3 text-[0.9rem] font-semibold text-[#1a1a1a]">{video.caption}</figcaption>
               </motion.figure>
             ))}

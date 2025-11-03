@@ -39,13 +39,13 @@ const transformations: Transformation[] = [
 
 const reviewVideos = [
   {
-    src: '/video/IMG_6187.MP4',
-    poster: '/images/IMG_6187-poster.jpg',
+    src: '/video/IMG_6184.MP4',
+    poster: '/images/IMG_6184-poster.jpg',
     caption: 'Живий відгук: мінус 7 кг за 21 день',
   },
   {
-    src: '/video/IMG_6194.MP4',
-    poster: '/images/IMG_6194-poster.jpg',
+    src: '/video/IMG_6195.MP4',
+    poster: '/images/IMG_6195-poster.jpg',
     caption: 'Живий відгук: повернулася впевненість у собі',
   },
 ];
@@ -126,10 +126,19 @@ export default function ResultsSection() {
               transition={{ delay: index * 0.05, duration: 0.4 }}
               className="overflow-hidden rounded-[1.6rem] border border-[#ffd2e0] bg-white shadow-[0_14px_30px_rgba(255,126,95,0.14)]"
             >
-              <video controls preload="metadata" poster={video.poster} className="h-52 w-full bg-black object-cover sm:h-56">
-                <source src={video.src} type="video/mp4" />
-              </video>
-              <figcaption className="px-4 py-3 text-[0.9rem] font-semibold text-[#1a1a1a]">{video.caption}</figcaption>
+              <div className="relative aspect-video w-full overflow-hidden rounded-t-[1.6rem] bg-black">
+                <video
+                  controls
+                  preload="metadata"
+                  poster={video.poster}
+                  className="absolute inset-0 h-full w-full object-contain"
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
+              </div>
+              <figcaption className="px-4 py-3 text-[0.9rem] font-semibold text-[#1a1a1a]">
+                {video.caption}
+              </figcaption>
             </motion.figure>
           ))}
         </div>

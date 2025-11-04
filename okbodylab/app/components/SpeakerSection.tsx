@@ -25,7 +25,7 @@ export default function SpeakerSection() {
             Спікер навчання
           </span>
           <h2 className="font-extrabold leading-tight text-[1.85rem] sm:text-[2.1rem]">
-            Я, Олег Козлов — фітнес-тренер, нутриціолог і Майстер спорту міжнародного класу з силового екстріму.
+            Я, Олег Козлов — фітнес-тренер та нутриціолог, Майстер спорту міжнародного класу з силового екстріму.
           </h2>
           <ul className="space-y-3 text-[0.95rem] font-semibold text-[#1a1a1a]">
             {highlights.map((item) => (

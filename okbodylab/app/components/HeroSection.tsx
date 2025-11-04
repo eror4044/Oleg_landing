@@ -1,21 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePurchaseModal } from './PurchaseModalContext';
-
-const heroVideos = [
-  {
-    src: '/video/IMG_6187.MP4',
-    poster: '/images/IMG_6187-poster.jpg',
-    caption: 'Живий відгук: мінус 7 кг за 21 день',
-  },
-  {
-    src: '/video/IMG_6194.MP4',
-    poster: '/images/IMG_6194-poster.jpg',
-    caption: 'Живий відгук: повернулася впевненість у собі',
-  },
-];
 
 export default function HeroSection() {
   const { openModal } = usePurchaseModal();
@@ -72,23 +58,54 @@ export default function HeroSection() {
                 <div className="mt-6">
                   <div className="flex flex-wrap items-baseline gap-x-3">
                     <p className="text-[1.5rem] font-extrabold text-[#ff4fa2]">399 ₴</p>
-                    <p className="text-sm line-through text-[#999]">2900 ₴</p>
+                    <p className="text-sm line-through text-[#999]">3999 ₴</p>
                     <span className="text-[#ff7e5f] font-bold uppercase tracking-wide">−90%</span>
                   </div>
                 </div>
-
-                {/* Кнопка CTA */}
                 <div className="mt-6 flex flex-col gap-3 lg:mt-8 lg:items-start lg:gap-4">
                   <button
                     onClick={openModal}
-                    className="w-full animate-pulse rounded-full bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f] px-10 py-3 text-[1rem] font-semibold text-white shadow-[0_4px_14px_rgba(255,79,162,0.35)] transition hover:scale-[1.03] sm:w-auto sm:px-12 sm:text-[1.05rem] lg:min-w-[240px] lg:px-16 lg:py-4 lg:text-[1.1rem] lg:leading-none lg:tracking-wide"
+                    className="
+      relative w-full overflow-hidden whitespace-nowrap
+      flex items-center justify-center
+      rounded-full bg-gradient-to-r from-[#ff4fa2] via-[#ff7e5f] to-[#ff4fa2]
+      bg-[length:300%_300%] px-12 py-3 text-[1.1rem] font-extrabold uppercase tracking-wide text-white
+      shadow-[0_0_35px_rgba(255,79,162,0.55),0_0_65px_rgba(255,126,95,0.45)]
+      transition-all duration-300 sm:w-auto lg:min-w-[250px] lg:px-16 lg:py-4
+      hover:scale-[1.08] active:scale-[0.97]
+      animate-gradientFire
+    "
                   >
-                    Купити зі знижкою
+                    {/* Aura */}
+                    <span
+                      className="absolute inset-[-40%] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,79,162,0.7),rgba(255,126,95,0.5),transparent_70%)]
+      blur-[70px] opacity-80 animate-auraFlash"
+                      aria-hidden="true"
+                    />
+
+                    {/* Gradient core */}
+                    <span
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#ff007f] via-[#ff7e5f] to-[#ff007f]
+      bg-[length:400%_400%] animate-gradientFire opacity-90"
+                      aria-hidden="true"
+                    />
+
+                    {/* Shine */}
+                    <span
+                      className="absolute left-[-180%] top-0 h-full w-[180%] rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent opacity-70 hover:animate-shineRun"
+                      aria-hidden="true"
+                    />
+
+                    {/* Text — центрируем вертикально и горизонтально */}
+                    <span className="relative z-10 flex items-center justify-center leading-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">
+                      Купити зі знижкою
+                    </span>
                   </button>
                 </div>
 
+
                 {/* Плашка довіри */}
-                <div className="mt-8 inline-flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6 lg:mt-10">
+                <div className="mt-8 flex flex-col items-start gap-3 sm:gap-6 lg:mt-10">
                   <span className="rounded-xl bg-[#fff0ea] px-8 py-4 text-center text-[1rem] font-semibold text-[#ff7e5f] shadow-[0_4px_12px_rgba(255,126,95,0.25)] sm:px-10 sm:text-[1.05rem] lg:px-12 lg:py-5 lg:text-[1.1rem]">
                     Мені можна довіряти
                   </span>
@@ -161,41 +178,6 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* === Живі відео відгуки (Hero) === */}
-      <section className="relative z-10 bg-transparent pb-12 text-[#1a1a1a] sm:pb-14">
-        <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 md:px-8">
-          <div className="mb-6 text-left sm:text-center">
-            <span className="inline-flex items-center justify-center rounded-full bg-white px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[#ff4fa2] shadow-[0_6px_16px_rgba(255,79,162,0.2)]">
-              Живі відео відгуки
-            </span>
-            <p className="mt-3 text-[0.95rem] text-[#444]">Подивись короткі відео учасниць відразу після старту.</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {heroVideos.map((video) => (
-              <motion.figure
-                key={video.src}
-                className="overflow-hidden rounded-[1.4rem] border border-[#ffd2e0] bg-white shadow-[0_12px_26px_rgba(255,126,95,0.18)]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="relative aspect-video w-full overflow-hidden rounded-t-[1.4rem] bg-black">
-                  <video
-                    controls
-                    preload="metadata"
-                    poster={video.poster}
-                    className="absolute inset-0 h-full w-full object-contain"
-                  >
-                    <source src={video.src} type="video/mp4" />
-                  </video>
-                </div>
-                <figcaption className="px-4 py-3 text-[0.9rem] font-semibold text-[#1a1a1a]">{video.caption}</figcaption>
-              </motion.figure>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

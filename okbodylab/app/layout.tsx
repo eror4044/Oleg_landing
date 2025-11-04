@@ -6,6 +6,7 @@ import BackgroundAura from './components/BackgroundAura';
 import PurchaseModal from './components/PurchaseModal';
 import { PurchaseModalProvider } from './components/PurchaseModalContext';
 import SeoDefaults from './components/SeoDefaults';
+import StickyCTA from './components/StickyCTA'; // 🟢 добавлено
 import './styles/globals.css';
 
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="relative overflow-x-hidden font-sans antialiased text-dark">
         <SeoDefaults />
 
+        {/* === GTM === */}
         {gtmId ? (
           <>
             <Script id="gtm-init" strategy="afterInteractive">
@@ -57,6 +59,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </>
         ) : null}
 
+        {/* === Meta Pixel === */}
         {metaPixelId ? (
           <>
             <Script id="meta-pixel" strategy="afterInteractive">
@@ -84,11 +87,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </>
         ) : null}
 
+        {/* === Контент === */}
         <PurchaseModalProvider>
           <BackgroundAura />
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>
+
+          {/* 💥 Всплывающая кнопка CTA */}
+          <StickyCTA />
+
           <PurchaseModal />
         </PurchaseModalProvider>
       </body>

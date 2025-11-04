@@ -53,7 +53,7 @@ export default function FitIntensiveBrochure() {
       {/* CTA Buttons */}
       <div className="absolute bottom-[150px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 w-[80%]">
         <button className="w-full bg-gradient-to-r from-[#FF7E5F] to-[#FEB47B] text-white font-semibold py-3 rounded-full text-xl shadow-lg border border-[#FFBFA5]">
-          Знижка −82% тільки сьогодні
+          Знижка −90% тільки сьогодні
         </button>
         <button className="w-full bg-white text-[#FF7E5F] border-2 border-[#FF7E5F] font-semibold py-3 rounded-full text-xl hover:bg-[#FF7E5F] hover:text-white transition-all duration-200">
           🎁 Отримай 8 бонусів при оплаті сьогодні

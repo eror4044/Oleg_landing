@@ -70,3 +70,51 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, rgba(255, 126, 95, 1), rgba(254, 180, 123, 1));
 }
+@keyframes gradientFire {
+  0% { background-position: 0% 50%; filter: brightness(1); }
+  50% { background-position: 100% 50%; filter: brightness(1.3) contrast(1.2); }
+  100% { background-position: 0% 50%; filter: brightness(1); }
+}
+
+@keyframes auraFlash {
+  0%, 100% { opacity: 0.6; transform: scale(1); filter: blur(70px); }
+  50% { opacity: 1; transform: scale(1.25); filter: blur(90px) brightness(1.4); }
+}
+
+@keyframes shineRun {
+  0% { transform: translateX(-150%); opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { transform: translateX(150%); opacity: 0; }
+}
+
+.animate-gradientFire {
+  animation: gradientFire 2.2s ease-in-out infinite;
+}
+
+.animate-auraFlash {
+  animation: auraFlash 3.5s ease-in-out infinite;
+}
+
+.hover\:animate-shineRun:hover {
+  animation: shineRun 1.2s ease-in-out;
+}
+@keyframes gradientFire {
+  0% { background-position: 0% 50%; filter: brightness(1); }
+  50% { background-position: 100% 50%; filter: brightness(1.3) contrast(1.2); }
+  100% { background-position: 0% 50%; filter: brightness(1); }
+}
+
+@keyframes auraFlash {
+  0%, 100% { opacity: 0.6; transform: scale(1); filter: blur(70px); }
+  50% { opacity: 1; transform: scale(1.25); filter: blur(90px) brightness(1.4); }
+}
+
+@keyframes shineRun {
+  0% { transform: translateX(-150%); opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { transform: translateX(150%); opacity: 0; }
+}
+
+.animate-gradientFire { animation: gradientFire 2.2s ease-in-out infinite; }
+.animate-auraFlash { animation: auraFlash 3.5s ease-in-out infinite; }
+.hover\:animate-shineRun:hover { animation: shineRun 1.2s ease-in-out; }

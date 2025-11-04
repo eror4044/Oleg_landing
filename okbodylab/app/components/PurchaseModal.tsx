@@ -34,7 +34,7 @@ export default function PurchaseModal() {
 
             <div className="space-y-4 text-center text-dark">
               <p className="inline-flex rounded-full bg-primary/15 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-                Знижка −82%
+                Знижка −90%
               </p>
               <h2 className="font-display text-3xl">Оплатити інтенсив сьогодні</h2>
               <p className="text-sm text-slate">

@@ -60,7 +60,7 @@ export default function BonusesSection() {
         </div>
 
         {/* === Таймер і кнопка (уніфікований компонент) === */}
-        <BonusTimer discount={72} />
+        <BonusTimer discount={90} />
       </div>
     </section>
   );

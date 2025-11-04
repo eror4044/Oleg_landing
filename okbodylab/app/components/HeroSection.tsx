@@ -35,7 +35,7 @@ export default function HeroSection() {
                   Старт <span className="text-[#ff7e5f]">7 листопада</span>
                 </span>
                 <span className="text-[#ff4fa2] text-[0.95rem] font-extrabold tracking-[0.22em] sm:text-[1.05rem] lg:text-[1.18rem]">
-                  Легкі — мінус 8 кг
+                  Легкі - 8 кг
                 </span>
               </div>
 

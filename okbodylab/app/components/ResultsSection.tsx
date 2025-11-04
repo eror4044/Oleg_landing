@@ -219,19 +219,21 @@ export default function ResultsSection() {
                         className="group relative block"
                         aria-label={`Відкрити фото ${item.name}`}
                       >
-                        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3 / 4' }}>
+                        <div
+                          className="relative flex w-full items-center justify-center overflow-hidden bg-white"
+                          style={{ aspectRatio: '3 / 4' }}
+                        >
                           <Image
                             src={item.image}
                             alt={item.name}
                             width={520}
                             height={690}
                             sizes="(max-width: 768px) 100vw"
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                             priority={index === 0}
                           />
                         </div>
                       </button>
-      
                     </article>
                   ))}
                 </div>
@@ -289,20 +291,20 @@ export default function ResultsSection() {
                   className="group relative block"
                   aria-label={`Відкрити фото ${item.name}`}
                 >
-                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3 / 4' }}>
+                  <div
+                    className="relative flex w-full items-center justify-center overflow-hidden bg-white"
+                    style={{ aspectRatio: '3 / 4' }}
+                  >
                     <Image
                       src={item.image}
                       alt={item.name}
                       width={520}
                       height={690}
                       sizes="(max-width: 1024px) 50vw, 480px"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
                 </button>
-                <div className="px-4 py-4">
-                  <p className="text-[1rem] font-bold">{item.name}</p>
-                </div>
               </motion.article>
             ))}
           </div>

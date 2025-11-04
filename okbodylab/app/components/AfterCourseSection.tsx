@@ -95,7 +95,7 @@ export default function AfterCourseSection() {
         >
           <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-[#ffd2e0] bg-white shadow-[0_24px_48px_rgba(255,126,95,0.18)]">
             <Image
-              src="/images/photo_5_2025-10-31_13-29-55.jpg"
+              src="/images/photo_14_2025-10-31_13-29-55.jpg"
               alt="Результати після курсу"
               width={640}
               height={860}
@@ -107,7 +107,7 @@ export default function AfterCourseSection() {
           <div className="mt-4 rounded-[1.2rem] bg-[#fff6f1] px-5 py-4 text-center shadow-[0_8px_20px_rgba(255,126,95,0.1)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[#ff7e5f]">Після інтенсиву</p>
             <p className="mt-2 text-[0.9rem] leading-snug text-[#333]">
-              На фото — реальні учениці після 5 днів роботи. Ти теж зможеш побачити різницю неозброєним оком.
+              На фото — реальні учениці після 3 місяці роботи. Ти теж зможеш побачити різницю неозброєним оком.
             </p>
           </div>
         </motion.div>

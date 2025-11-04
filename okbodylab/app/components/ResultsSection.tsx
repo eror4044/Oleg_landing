@@ -220,16 +220,15 @@ export default function ResultsSection() {
                         aria-label={`Відкрити фото ${item.name}`}
                       >
                         <div
-                          className="relative flex w-full items-center justify-center overflow-hidden bg-white"
-                          style={{ aspectRatio: '3 / 4' }}
+                          className="relative flex items-center justify-center bg-white p-1"
+                          style={{ aspectRatio: '3 / 4', overflow: 'visible' }}
                         >
                           <Image
                             src={item.image}
                             alt={item.name}
-                            width={520}
-                            height={690}
-                            sizes="(max-width: 768px) 100vw"
-                            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                            width={600}
+                            height={800}
+                            className="h-auto w-auto max-h-full max-w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
                             priority={index === 0}
                           />
                         </div>
@@ -292,16 +291,15 @@ export default function ResultsSection() {
                   aria-label={`Відкрити фото ${item.name}`}
                 >
                   <div
-                    className="relative flex w-full items-center justify-center overflow-hidden bg-white"
+                    className="relative w-full overflow-hidden bg-white"
                     style={{ aspectRatio: '3 / 4' }}
                   >
                     <Image
                       src={item.image}
                       alt={item.name}
-                      width={520}
-                      height={690}
+                      fill
                       sizes="(max-width: 1024px) 50vw, 480px"
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
                 </button>

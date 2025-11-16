@@ -45,13 +45,15 @@ export default function PurchaseModal() {
                 <p className="font-semibold text-primary">До списку бонусів входять:</p>
                 <p>щоденник харчування, 5 рецептів, релакс-практика, чат підтримки і ще 4 подарунки.</p>
               </div>
-              <motion.button
+              <motion.link
+                href="https://secure.wayforpay.com/button/b6f9c11949069"
+                rel="wayforpay"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}
                 className="btn-cta w-full justify-center"
               >
                 Перейти до оплати
-              </motion.button>
+              </motion.link>
             </div>
           </motion.div>
         </motion.div>

@@ -32,7 +32,7 @@ export default function HeroSection() {
               {/* Верхній ряд */}
               <div className="mb-6 flex flex-wrap items-center gap-x-6 text-[0.85rem] font-semibold uppercase tracking-[0.15em] text-[#e84c83] sm:text-[0.95rem] md:gap-x-10">
                 <span>
-                  Старт <span className="text-[#ff7e5f]">17 листопада</span>
+                  Старт <span className="text-[#ff7e5f]">18 листопада</span>
                 </span>
                 <span className="text-[#ff4fa2] text-[0.95rem] font-extrabold tracking-[0.22em] sm:text-[1.05rem] lg:text-[1.18rem]">
                   Легкі - 8 кг

@@ -273,38 +273,76 @@ export default function ResultsSection() {
             </div>
           </div>
         ) : (
-          <div className="mt-8 grid gap-5 sm:gap-6 md:grid-cols-2">
-            {photoResults.map((item, index) => (
-              <motion.article
-                key={item.name}
-                variants={fadeIn}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: index * 0.05, duration: 0.45 }}
-                className="overflow-hidden rounded-[1.5rem] border border-[#ffd2e0] bg-white shadow-[0_16px_30px_rgba(255,126,95,0.16)]"
-              >
-                <button
-                  type="button"
-                  onClick={() => openLightbox(item.image, item.name)}
-                  className="group relative block"
-                  aria-label={`Відкрити фото ${item.name}`}
+          <div className="mt-8">
+            <div className="relative mx-auto max-w-4xl">
+              <div className="overflow-hidden rounded-[1.6rem] border border-[#ffd2e0] bg-white/90 shadow-[0_16px_30px_rgba(255,126,95,0.16)]">
+                <div
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${activePhoto * 100}%)` }}
                 >
-                  <div
-                    className="relative w-full overflow-hidden bg-white"
-                    style={{ aspectRatio: '3 / 4' }}
+                  {photoResults.map((item, index) => (
+                    <article
+                      key={item.name}
+                      className="flex w-full shrink-0 basis-full items-center justify-center px-4"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => openLightbox(item.image, item.name)}
+                        className="group relative block w-full max-w-3xl"
+                        aria-label={`Відкрити фото ${item.name}`}
+                      >
+                        <div
+                          className="relative w-full overflow-hidden bg-white max-h-[78vh]"
+                          style={{ aspectRatio: '3 / 4' }}
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={900}
+                            height={1200}
+                            sizes="(min-width: 1024px) 720px, 90vw"
+                            className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                          />
+                        </div>
+                      </button>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              {photoResults.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setActivePhoto((prev) => (prev - 1 + photoResults.length) % photoResults.length)}
+                    className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-[#ff4fa2] shadow-lg transition hover:scale-105"
+                    aria-label="Попереднє фото"
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 480px"
-                      className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                </button>
-              </motion.article>
-            ))}
+                    <span aria-hidden="true" className="text-xl font-bold leading-none">&#8249;</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActivePhoto((prev) => (prev + 1) % photoResults.length)}
+                    className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-[#ff4fa2] shadow-lg transition hover:scale-105"
+                    aria-label="Наступне фото"
+                  >
+                    <span aria-hidden="true" className="text-xl font-bold leading-none">&#8250;</span>
+                  </button>
+                </>
+              )}
+            </div>
+
+            <div className="mt-4 flex justify-center gap-2.5">
+              {photoResults.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => setActivePhoto(index)}
+                  className={`h-2.5 w-2.5 rounded-full transition-all ${index === activePhoto ? 'bg-[#ff4fa2]' : 'bg-[#ffd2e0]'}`}
+                  aria-label={`Перейти до фото ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         )}
 
@@ -451,7 +489,7 @@ export default function ResultsSection() {
               >
                 Закрити
               </button>
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-black">
+              <div className="relative aspect-[3/4] w-full max-h-[90vh] overflow-hidden rounded-[1.5rem] bg-black">
                 <Image
                   src={lightboxSrc}
                   alt={lightboxAlt}

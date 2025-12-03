@@ -9,15 +9,15 @@ export default function SeoDefaults() {
   return (
     <>
       <DefaultSeo
-        titleTemplate="Fit Intensive · %s"
-        defaultTitle="Fit Intensive — мінус 10 кг без зривів та виснажень"
-        description="Fit Intensive — жіночий інтенсив від Олега Козлова: легка система мінус 10 кг без дієт. Харчування, тренування, підтримка, бонуси й чат 24/7."
+        titleTemplate="OK body lab · %s"
+        defaultTitle="OK body lab — мінус 10 кг без зривів та виснажень"
+        description="OK body lab — жіночий інтенсив від Олега Козлова: легка система мінус 10 кг без дієт. Харчування, тренування, підтримка, бонуси й чат 24/7."
         canonical={canonicalUrl}
         openGraph={{
           url: canonicalUrl,
           type: 'website',
           locale: 'uk_UA',
-          title: 'Fit Intensive — легкий шлях до мінус 10 кг',
+          title: 'OK body lab — легкий шлях до мінус 10 кг',
           description:
             'Легка програма схуднення без зривів: харчування, тренування, ментальні практики й бонуси від Олега Козлова.',
           images: [
@@ -25,10 +25,10 @@ export default function SeoDefaults() {
               url: ogImageUrl,
               width: 1200,
               height: 630,
-              alt: 'Fit Intensive — результати клієнток',
+              alt: 'OK body lab — результати клієнток',
             },
           ],
-          siteName: 'Fit Intensive',
+          siteName: 'OK body lab',
         }}
         additionalLinkTags={[
           { rel: 'icon', href: '/favicon.ico' },
@@ -42,7 +42,7 @@ export default function SeoDefaults() {
       />
 
       <ProductJsonLd
-        productName="Fit Intensive — жіночий інтенсив"
+        productName="OK body lab — жіночий інтенсив"
         images={[ogImageUrl]}
         description="Легкі −10 кг без зривів та виснажень. Система харчування, тренування, подкасти та підтримка від Олега Козлова."
         brand="OK Body Lab"

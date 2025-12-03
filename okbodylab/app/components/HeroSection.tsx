@@ -14,7 +14,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 -z-10 overflow-hidden lg:hidden">
           <Image
             src="/images/hero.png"
-            alt="Олег Козлов — тренер Fit Intensive"
+            alt="Олег Козлов — тренер OK body lab"
             fill
             priority
             className="object-contain object-right-bottom translate-x-[15%] scale-[1.05] md:translate-x-[18%] md:scale-[1.08]"
@@ -32,7 +32,7 @@ export default function HeroSection() {
               {/* Верхній ряд */}
               <div className="mb-6 flex flex-wrap items-center gap-x-6 text-[0.85rem] font-semibold uppercase tracking-[0.15em] text-[#e84c83] sm:text-[0.95rem] md:gap-x-10">
                 <span>
-                  Старт <span className="text-[#ff7e5f]">2 грудня</span>
+                  Старт <span className="text-[#ff7e5f]">4 грудня</span>
                 </span>
                 <span className="text-[#ff4fa2] text-[0.95rem] font-extrabold tracking-[0.22em] sm:text-[1.05rem] lg:text-[1.18rem]">
                   Легкі - 8 кг
@@ -128,7 +128,7 @@ export default function HeroSection() {
               />
               <Image
                 src="/images/hero.png"
-                alt="Олег Козлов — тренер Fit Intensive"
+                alt="Олег Козлов — тренер OK body lab"
                 width={560}
                 height={760}
                 priority

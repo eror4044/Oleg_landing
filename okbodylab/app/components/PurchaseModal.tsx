@@ -38,7 +38,7 @@ export default function PurchaseModal() {
               </p>
               <h2 className="font-display text-3xl">Оплатити інтенсив сьогодні</h2>
               <p className="text-sm text-slate">
-                Отримай миттєвий доступ до Fit Intensive, бонусів і чату підтримки. Після оплати вся
+                Отримай миттєвий доступ до OK body lab, бонусів і чату підтримки. Після оплати вся
                 інформація надходить на твою пошту.
               </p>
               <div className="rounded-3xl bg-sand/80 p-4 text-sm text-slate">

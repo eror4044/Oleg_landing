@@ -369,7 +369,7 @@ export default function ResultsSection() {
           <span className="inline-flex items-center justify-center rounded-full bg-[#ff4fa2]/10 px-5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-[#ff4fa2]">
             Відеовідгуки
           </span>
-          <h3 className="mt-3 text-[1.6rem] font-extrabold">Подивися реальні відгуки учасників Fit Intensive</h3>
+          <h3 className="mt-3 text-[1.6rem] font-extrabold">Подивися реальні відгуки учасників OK body lab</h3>
         </motion.div>
 
         {isMobile ? (

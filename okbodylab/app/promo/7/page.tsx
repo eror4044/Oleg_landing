@@ -4,21 +4,20 @@ import Image from 'next/image';
 export default function Promo7() {
   return (
     <section className="relative w-full h-full overflow-hidden text-white">
-      {/* === Фон === */}
+      {/* === Фон без затемнения === */}
       <Image
         src="/images/IMG_6929.jpg"
         alt="Poster background"
         fill
         priority
-        className="object-cover brightness-[0.45] contrast-[1.1]"
+        className="object-cover brightness-[0.7] contrast-[1.1]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
 
       {/* === Контент === */}
       <div
         className={`
           relative z-10 flex h-full flex-col items-center justify-center
-          px-8 text-center
+          px-8 text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]
         `}
       >
         <h1 className="max-w-[680px] text-[2.7rem] sm:text-[3rem] font-extrabold leading-tight mb-6">
@@ -29,7 +28,7 @@ export default function Promo7() {
           <span className="text-white">і харчові звички</span>
         </h1>
 
-        <p className="max-w-[600px] text-[1.15rem] text-white/85 mb-10">
+        <p className="max-w-[600px] text-[1.15rem] text-white/90 mb-10">
           Не марафон — система. Ефективна трансформація тіла всього за 5 днів.
         </p>
 
@@ -37,10 +36,10 @@ export default function Promo7() {
         <div className="flex flex-col items-center gap-3">
           {/* Верхняя часть с ценами */}
           <div className="flex items-end gap-3 mb-2">
-            <span className="text-white/60 text-[1rem] line-through">
+            <span className="text-white/70 text-[1rem] line-through">
               3990 грн
             </span>
-            <span className="text-[2rem] font-extrabold bg-gradient-to-r from-[#ff7e5f] to-[#ff4fa2] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,79,162,0.4)]">
+            <span className="text-[2rem] font-extrabold bg-gradient-to-r from-[#ff7e5f] to-[#ff4fa2] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,79,162,0.45)]">
               399 грн
             </span>
           </div>
@@ -56,11 +55,6 @@ export default function Promo7() {
               −90%
             </span>
           </div>
-
-          {/* Дата старту */}
-          <span className="mt-4 text-sm uppercase tracking-[0.2em] text-[#ffbfd2]">
-            Старт 2 листопада — обмежена знижка
-          </span>
         </div>
       </div>
     </section>

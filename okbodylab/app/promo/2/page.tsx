@@ -9,56 +9,66 @@ export default function Promo2() {
   ];
 
   return (
-    <section className="relative w-full h-full overflow-hidden text-white">
+    <section className="relative aspect-[1/1] w-full overflow-hidden text-white">
       {/* === Фон === */}
       <Image
-        src="/images/IMG_6929.jpg"
-        alt="Fit Intensive background"
+        src="/images/IMG_7042.jpg"
+        alt="OK body lab background"
         fill
         priority
-        className="object-cover brightness-[0.4]"
+        className="object-cover object-[center_10%] brightness-[0.7] contrast-[1.1]"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
       {/* === Контент === */}
-      <div
-        className={`
-          relative z-10 flex h-full flex-col justify-center
-          px-8 md:px-12 max-w-[680px]
-          transition-all text-center lg:text-left
-        `}
-      >
-        <h1 className="text-[2.3rem] font-extrabold mb-5 leading-tight">
-          FIT INTENSIVE{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f]">
-            — трансформація за 5 днів
-          </span>
-        </h1>
+      <div className="relative z-10 flex flex-col justify-between h-full px-8 py-8">
+        {/* === Верхний блок === */}
+        <div className="text-left">
+          <h1 className="text-[1.9rem] font-extrabold leading-tight mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+            <span className="text-white">OK body lab</span>
+            <br />
+            <span className="bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f] bg-clip-text text-transparent">
+              трансформація за 5 днів
+            </span>
+          </h1>
+        </div>
 
-        <ul className="space-y-3 text-[1.05rem] leading-snug">
-          {list.map((t) => (
-            <li
+        {/* === Средний блок — список === */}
+        <div className="flex flex-col gap-3 mt-2">
+          {list.slice(0, 2).map((t) => (
+            <div
               key={t}
-              className="rounded-full bg-white/10 px-6 py-3 backdrop-blur-[4px] shadow-[0_0_20px_rgba(255,79,162,0.3)]"
+              className="rounded-[1.2rem] bg-black/45 px-5 py-2.5 text-[0.95rem] leading-snug backdrop-blur-[6px] shadow-[0_0_25px_rgba(255,79,162,0.3)] text-white/95"
             >
               {t}
-            </li>
-          ))}
-        </ul>
-
-        {/* === Блок з ціною і знижкою === */}
-        <div className="mt-8 flex flex-col items-center lg:items-start gap-3">
-          <div className="flex items-center gap-3">
-            <div className="rounded-full bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f] px-10 py-3 text-[1.15rem] font-semibold shadow-[0_0_25px_rgba(255,79,162,0.5)]">
-              399 грн — приєднуйся!
             </div>
-            <span className="rounded-full bg-gradient-to-r from-[#ff7e5f] to-[#ff4fa2] text-white text-[1rem] font-bold px-4 py-2 shadow-[0_0_15px_rgba(255,126,95,0.5)] animate-pulse">
+          ))}
+        </div>
+
+        {/* === Нижний блок (цены и CTA) === */}
+        <div className="mt-5 flex flex-col items-start gap-3">
+          {/* Цены */}
+          <div className="flex items-end gap-3">
+            <span className="text-white/60 text-[0.9rem] line-through">
+              3990 грн
+            </span>
+            <span className="text-[1.6rem] font-extrabold bg-gradient-to-r from-[#ff7e5f] to-[#ff4fa2] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,79,162,0.4)]">
+              399 грн
+            </span>
+          </div>
+
+          {/* Кнопка и скидка */}
+          <div className="relative flex items-center justify-start">
+            <div className="rounded-full bg-gradient-to-r from-[#ff4fa2] to-[#ff7e5f] px-7 py-3 text-[1rem] font-semibold text-white shadow-[0_0_30px_rgba(255,79,162,0.45)]">
+              Приєднуйся сьогодні!
+            </div>
+
+            <span className="absolute right-[-16px] top-[-10px] rounded-full bg-white text-[#ff4fa2] text-[0.8rem] font-bold px-2.5 py-0.5 shadow-[0_0_10px_rgba(255,79,162,0.4)] border border-[#ff4fa2]/30">
               −90%
             </span>
           </div>
 
-          <p className="text-sm text-white/70 italic">
-            Тільки сьогодні — найвигідніша пропозиція 🔥
+          <p className="text-xs text-white/80 italic mt-1">
+            Тільки сьогодні — найвигідніша пропозиція ✨
           </p>
         </div>
       </div>

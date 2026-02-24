@@ -2,10 +2,15 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { usePurchaseModal } from './PurchaseModalContext';
 
 export default function PurchaseModal() {
   const { open, closeModal } = usePurchaseModal();
+  const pathname = usePathname();
+
+  // VIP route has its own modal — don't render the main one
+  if (pathname?.startsWith('/iejg3234n')) return null;
 
   return (
     <AnimatePresence>

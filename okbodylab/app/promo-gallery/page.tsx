@@ -11,6 +11,8 @@ const promos = [
   { id: 5, component: dynamic(() => import('../promo/5/page')) },
   { id: 6, component: dynamic(() => import('../promo/6/page')) },
   { id: 7, component: dynamic(() => import('../promo/7/page')) },
+  { id: 8, component: dynamic(() => import('../promo/8/page')) },
+  { id: 9, component: dynamic(() => import('../promo/9/page')) },
 ];
 
 export default function PromoGallery() {

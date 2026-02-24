@@ -7,12 +7,12 @@ export default function Promo1() {
       {/* === Фон === */}
       <Image
         src="/images/IMG_7024.jpg"
-        alt="Fit Intensive background"
+        alt="OK body lab background"
         fill
         priority
-        className="object-cover brightness-[0.45] contrast-[1.1]"
+        className="object-cover brightness-[0.65] contrast-[1.05]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/15 to-transparent" />
 
       {/* === Контент === */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">

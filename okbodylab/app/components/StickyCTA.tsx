@@ -1,16 +1,21 @@
 ﻿'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import CTAButton from './CTAButton';
 
 export default function StickyCTA() {
     const [visible, setVisible] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const onScroll = () => setVisible(window.scrollY > 600);
         window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
+
+    // VIP route has its own CTA — hide the main one
+    if (pathname?.startsWith('/iejg3234n')) return null;
 
     return (
         <AnimatePresence>

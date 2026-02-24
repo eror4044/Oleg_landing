@@ -13,10 +13,10 @@ export default function Promo3() {
       {/* === Фон === */}
       <Image
         src="/images/IMG_6965.jpg"
-        alt="Fit Intensive background"
+        alt="OK body lab background"
         fill
         priority
-        className="object-cover brightness-[0.45] contrast-[1.05]"
+        className="object-cover brightness-[1.25] contrast-[1.05]"
       />
 
       {/* === Мягкое затемнение === */}
